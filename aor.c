@@ -49,12 +49,13 @@ int main(void) {
     j++;
   }
 
-  for (j = 0; j < N; j++) {
+  while (j != N) {
     for (size_t i = 0; i < ; i++) {
       printf("%d -> ", i);
       display(cases[j][i]);
     }
     printf("\n");
+    j++;
   }
 
   return 0;
@@ -99,5 +100,4 @@ void display(lista * LISTA) {
   while (p != NULL) {
     printf("%d -> ", p->val);
   }
-  printf("\\n");
 }
