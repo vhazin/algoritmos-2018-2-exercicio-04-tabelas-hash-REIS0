@@ -1,103 +1,56 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-typedef struct node {
-  int val;
-  struct node * next;
-} node;
-
-typedef struct lista {
-  struct node * begin;
-  struct node * end;
-} lista;
-
-
-lista * createlist();
-int insert(lista * LISTA, int value);
-void display(lista * LISTA);
-
-
-int main(void) {
+int main() {
 
   int N;
   scanf("%d", &N);
-  int cases[N];
-
+  int M, C, d, n;
   int i = 0, j = 0;
-  while (j < N) {
 
-    int M;
-    int C;
+  while (i < N) {
+
     scanf("%d %d", &M, &C);
-    if (M > 100 || C > 100) {
+    if (M < 1 || M > 100 || C < 1 || C > 200) {
       return 0;
     }
-    int * ende[M];
-    int keys[C];
+    int array[M][C];
 
-    while (i != M && scanf("%d", &keys[i]) == 1) {
-      int h;
-      h = i % 13;
-      lista * ende[i] = createlist();
-      if (h < M) {
-        insert(ende[i], h);
-      }else {
-        continue;
+    for (j = 0; j < M; j++) {
+      for (n = 0; n < C; n++) {
+        array[j][n] = 0;
       }
     }
-    cases[j] = ende;
-    j++;
-  }
 
-  while (j != N) {
-    for (size_t i = 0; i < ; i++) {
-      printf("%d -> ", i);
-      display(cases[j][i]);
+    j = 0;
+    while (j < C) {
+
+      int h, a;
+      scanf("%d", &a);
+      h = a % M;
+      for (n = 0; n < C; n++) {
+        if (array[h][n] == 0) {
+          array[h][n] = a;
+          break;
+        }
+      }
+      j++;
     }
-    printf("\n");
-    j++;
+
+    for (j = 0; j < M; j++) {
+
+      printf("%d -> ", j);
+      for (n = 0; n < C; n++) {
+        if (array[j][n]) {
+          printf("%d -> ", array[j][n]);
+        }
+      }
+      printf("\\\n");
+    }
+    if (i < N - 1) {
+      printf("\n");
+    }
+    i++;
   }
 
   return 0;
-}
-
-
-lista * createlist() {
-
-  lista * head;
-  head = (lista*)malloc(sizeof(lista));
-
-  if (head != NULL) {
-    head->begin = NULL;
-  }
-
-  return head;
-}
-
-
-int insert(lista * LISTA, int value) {
-
-  node * new;
-  new = (node*)malloc(sizeof(node));
-  new->val = value;
-  new->next = NULL;
-
-  if (new == NULL) {
-    return 0;
-  }else if (LISTA->begin == NULL) {
-    LISTA->begin = new;
-  }else {
-    LISTA->end->next = new;
-    LISTA-> = new;
-  }
-  return 1;
-}
-
-
-void display(lista * LISTA) {
-
-  node * p = LISTA->begin;
-  while (p != NULL) {
-    printf("%d -> ", p->val);
-  }
 }
